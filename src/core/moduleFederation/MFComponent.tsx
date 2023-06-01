@@ -1,24 +1,27 @@
-import React, {Suspense} from "react";
-import {useFederatedComponent} from "./hooks/useFederatedComponent";
+import React, { type JSX, Suspense } from 'react';
+import { useFederatedComponent } from './hooks/useFederatedComponent';
 
 interface Props<ModuleProps = undefined> {
-    url: string;
-    scope: string;
-    module: string;
+    url: string
+    scope: string
+    module: string
     moduleProps?: ModuleProps
 }
 
-export const MFComponent = <T,>(props: Props<T>) => {
+// const WithGeneric = <T,>(): React.FC<TestProps<T>> =>
+//   (props: TestProps<T>) => (
 
-
-    const {url, scope, module, moduleProps = {}} = props;
-
-    const {Component: FederatedComponent, failed} = useFederatedComponent(url, scope, module);
-
+// eslint-disable-next-line @typescript-eslint/comma-dangle
+export const MFComponent = <T,>(props: Props<T>): JSX.Element => {
+// export const MFComponent = <T,>(): React.FC<Props<T>> => (props: Props<T>) => {
+    const { url, scope, module, moduleProps = {} } = props;
+    const { Component: FederatedComponent } = useFederatedComponent(url, scope, module);
 
     return (
-        <Suspense fallback="Loading Module">
-            {FederatedComponent && <FederatedComponent {...moduleProps}/>}
-        </Suspense>
+        <div>
+            <Suspense fallback="Loading Module">
+                {FederatedComponent && <FederatedComponent {...moduleProps}/>}
+            </Suspense>
+        </div>
     );
-}
+};

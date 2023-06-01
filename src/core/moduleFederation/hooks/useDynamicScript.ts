@@ -1,12 +1,17 @@
 import React from 'react';
 const urlCache = new Set();
 
-export const useDynamicScript = (url: string) => {
+export const useDynamicScript = (url: string): {
+    ready: boolean
+    failed: boolean
+} => {
     const [ready, setReady] = React.useState(false);
     const [failed, setFailed] = React.useState(false);
 
     React.useEffect(() => {
-        if (!url) return;
+        if (!url) {
+            return;
+        }
 
         if (urlCache.has(url)) {
             setReady(true);
