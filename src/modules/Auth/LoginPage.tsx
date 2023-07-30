@@ -2,13 +2,13 @@ import React from 'react';
 import { Button, Col, Row, Form, Text } from 'redrock';
 import { type LoginForm } from '../models';
 import style from './LoginPage.module.less';
-import { RequiredField } from 'Core/ValidationRules';
-import { type User } from 'Core/models';
+import { RequiredField } from 'core/ValidationRules';
+import { type User } from 'core/models';
 import { useMutation } from 'react-query';
-import { type ServerValidateErrors } from 'Core/models';
+import { type ServerValidateErrors } from 'core/models';
 import { loginUser } from './api';
 import { useDispatch } from 'react-redux';
-import { setAuthorized } from 'Modules/Auth/slices';
+import { setAuthorized } from 'modules/Auth/slices';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const LoginPage: React.FC = () => {

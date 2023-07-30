@@ -1,5 +1,5 @@
 import axios, { type AxiosError, type AxiosResponse } from 'axios';
-import { clearAuthorized } from '../Modules/Auth/slices';
+import { clearAuthorized } from '../modules/Auth/slices';
 import { store } from './store';
 
 const http = axios.create({

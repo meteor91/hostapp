@@ -1,8 +1,8 @@
 import React from 'react';
-import { CheckAuthorization } from 'Modules/Auth/components/CheckAuthorization';
-import { LoginPage } from 'Modules/Auth/LoginPage';
-import { LoggedLayout } from 'Modules/Auth/components/LoggedLayout';
-import { MFComponent } from 'Core/moduleFederation/MFComponent';
+import { CheckAuthorization } from 'modules/Auth/components/CheckAuthorization';
+import { LoginPage } from 'modules/Auth/LoginPage';
+import { LoggedLayout } from 'modules/Auth/components/LoggedLayout';
+import { MFComponent } from 'core/moduleFederation/MFComponent';
 
 const loggedRoutes = [
     {

@@ -1,5 +1,5 @@
-import { type User } from 'Core/models';
-import { get, post } from 'Core/http';
+import { type User } from 'core/models';
+import { get, post } from 'core/http';
 import { type LoginForm } from '../models';
 
 export const getCurrentUser = (): Promise<User> => get<User>('/users/current-user/');

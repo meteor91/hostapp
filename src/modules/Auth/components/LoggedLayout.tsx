@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useMutation } from 'react-query';
 import { Outlet } from 'react-router-dom';
 import { Button, Layout as RrLayout, Layout } from 'redrock';
-import { MainMenu } from 'Core/components/MainMenu';
-import { clearAuthorized } from 'Modules/Auth/slices';
+import { MainMenu } from 'core/components/MainMenu';
+import { clearAuthorized } from 'modules/Auth/slices';
 import { logoutUser } from '../api';
 
 import styles from './LoggedLayout.module.less';

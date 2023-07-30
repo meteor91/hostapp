@@ -2,8 +2,8 @@ import React from 'react';
 import { QueryClientProvider } from 'react-query';
 import { Provider as ReduxProvider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { store } from 'Core/store';
-import { queryClient } from 'Core/queryClient';
+import { store } from 'core/store';
+import { queryClient } from 'core/queryClient';
 import 'styles/base.less';
 import { routes } from './routes';
 

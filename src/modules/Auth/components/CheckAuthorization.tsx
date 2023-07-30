@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Spin } from 'redrock';
-import { TAppState } from 'Core/store';
+import { TAppState } from 'core/store';
 import { useCurrentUser } from '../hooks/useCurrentUser';
 import { useAuthorizeLost } from '../hooks/useAuthorizeLost';
 

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type User } from 'Core/models';
+import { type User } from 'core/models';
 
 interface State {
     authorized: boolean

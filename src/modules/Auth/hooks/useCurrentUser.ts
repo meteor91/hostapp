@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from '../api';
-import { User } from 'Core/models';
+import { User } from 'core/models';
 import { clearAuthorized, setAuthorized } from '../slices';
 
 export const useCurrentUser = (
