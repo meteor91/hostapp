@@ -16,19 +16,18 @@ const config = {
     entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
     },
     devServer: {
         host,
         port,
-        onListening: function (devServer) {
-            // if (!devServer) {
-            //     throw new Error('webpack-dev-server is not defined');
-            // }
-            // const addr = devServer.server.address();
-            // openBrowser(`http://${addr.address}:${addr.port}`);
-            // openBrowser(`[http://${host}:${port}`](http://${host}:${port}`));
+        onListening: (_devServer) => {
             openBrowser(`http://${host}:${port}`);
         },
+        proxy: {
+            '/api': 'http://127.0.0.1:8000',
+        },
+        historyApiFallback: true,
     },
     devtool: 'inline-source-map',
     mode: 'development',
@@ -62,12 +61,23 @@ const config = {
                 exclude: ['/node_modules/'],
             },
             {
-                test: /\.css$/i,
-                use: [stylesHandler, 'css-loader'],
-            },
-            {
                 test: /\.less$/i,
-                use: [stylesHandler, 'css-loader', 'less-loader'],
+                use: [
+                    {
+                        loader: 'style-loader', // creates style nodes from JS strings
+                    },
+                    {
+                        loader: 'css-loader', // translates CSS into CommonJS
+                        options: {
+                            modules: {
+                                localIdentName: '[local]_[hash:base64:5]',
+                            },
+                        },
+                    },
+                    {
+                        loader: 'less-loader', // compiles Less to CSS
+                    },
+                ],
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -80,6 +90,11 @@ const config = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
+        modules: [
+            path.resolve(__dirname, 'src'),
+            'node_modules',
+        ],
+        symlinks: false,
     },
 };
 
