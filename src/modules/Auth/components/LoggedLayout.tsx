@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useMutation } from 'react-query';
 import { Outlet } from 'react-router-dom';
-import { Button, Layout as RrLayout, Layout } from 'redrock';
+import { Button, Layout as RrLayout, Layout } from 'keepd';
 import { MainMenu } from 'core/components/MainMenu';
 import { clearAuthorized } from 'modules/Auth/slices';
 import { logoutUser } from '../api';

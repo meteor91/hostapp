@@ -1,9 +1,8 @@
 import React from 'react';
-import { PackageIcon, DeviceTabletIcon, NavBar } from 'redrock';
-import {useLocation, useNavigate, Link} from 'react-router-dom';
+import { PackageIcon, DeviceTabletIcon, NavBar } from 'keepd';
+import { useLocation, Link } from 'react-router-dom';
 
 export const MainMenu: React.FC = () => {
-    const navigate = useNavigate();
     const location = useLocation();
     const selectedKey = items.find(
         (item) => location.pathname.indexOf(item.key) === 0,

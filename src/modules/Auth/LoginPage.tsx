@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Row, Form, Text } from 'redrock';
+import { Button, Col, Row, Form, Text } from 'keepd';
 import { type LoginForm } from '../models';
 import style from './LoginPage.module.less';
 import { RequiredField } from 'core/ValidationRules';
@@ -25,7 +25,7 @@ export const LoginPage: React.FC = () => {
             },
         });
     };
-    console.log(mutation.error);
+
     return (
         <div className={style.login}>
             <div className={style.form}>
@@ -36,7 +36,7 @@ export const LoginPage: React.FC = () => {
                 </Row>
                 <Form<LoginForm>
                     onSubmit={handleSubmit}
-                    defaultValues={{ username: '', password: '' }}
+                    // defaultValues={{}}
                 >
                     <Form.Input
                         name="username"

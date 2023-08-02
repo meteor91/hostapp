@@ -1,7 +1,7 @@
 import React from 'react';
-import {Layout} from 'redrock';
+import { Layout } from 'keepd';
 
-const {Header, Sidebar, Content} = Layout;
+const { Header, Sidebar, Content } = Layout;
 export const Home = () => {
     // return <div>kek</div>;
     return (

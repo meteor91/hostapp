@@ -11,7 +11,7 @@ const router = createBrowserRouter(routes);
 
 export const App: React.FC = () => {
     return (
-        <div className="redrock">
+        <div className="keepd">
             <ReduxProvider store={store}>
                 <QueryClientProvider client={queryClient}>
                     <RouterProvider router={router} />
