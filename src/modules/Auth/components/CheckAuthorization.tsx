@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Spin } from 'keepd';
-import { TAppState } from 'core/store';
-import { useCurrentUser } from '../hooks/useCurrentUser';
-import { useAuthorizeLost } from '../hooks/useAuthorizeLost';
+import { useCheckAuthorization } from '../hooks/useCheckAuthorization';
 
 const doNotRedirectHereOnSuccessAuth = ['/', '/login'];
 
@@ -16,23 +14,14 @@ export const CheckAuthorization = (props: Props) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const isLoading = useCurrentUser(
-        () => {
-            const path = doNotRedirectHereOnSuccessAuth.some((path: string) => path === location.pathname)
-                ? props.onSuccessRedirectPath
-                : location.pathname;
-            navigate(path);            
-        },
-        () => {
-            navigate(
-                doNotRedirectHereOnSuccessAuth.some((path: string) => path === location.pathname)
-                    ? props.onFailRedirectPath
-                    : `${props.onFailRedirectPath}?redirectTo=${location.pathname}`,
-            );
-        },
-    );
+    const onSuccess = useCallback(() => {
+        const path = doNotRedirectHereOnSuccessAuth.some((path: string) => path === location.pathname)
+            ? props.onSuccessRedirectPath
+            : location.pathname;
+        navigate(path);
+    }, [props.onSuccessRedirectPath, navigate]);
 
-    useAuthorizeLost();
+    const isLoading = useCheckAuthorization(onSuccess);
 
     if (isLoading) {
         return (
@@ -44,5 +33,3 @@ export const CheckAuthorization = (props: Props) => {
         return <Outlet />;
     }
 };
-
-export const selectAuthFlag = (state: TAppState) => state.auth.authorized;

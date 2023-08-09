@@ -1,28 +1,30 @@
 // import i18n from 'i18next';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import { Outlet } from 'react-router-dom';
 import { Button, Layout as RrLayout, Layout } from 'keepd';
 import { MainMenu } from 'core/components/MainMenu';
-import { clearAuthorized } from 'modules/Auth/slices';
+import { setNotAuthorized } from 'modules/Auth/slices';
 import { logoutUser } from '../api';
-
-import styles from './LoggedLayout.module.less';
+import { useListenAuthStatus } from '../hooks/useListenAuthStatus';
+import styles from './AuthorizedLayout.module.less';
 
 const { Header, Sidebar, Content } = Layout;
 
-export const LoggedLayout: React.FC = () => {
+export const AuthorizedLayout: React.FC = () => {
     const dispatch = useDispatch();
     const mutation = useMutation(logoutUser);
 
     const handleLogout = () => {
         mutation.mutate(undefined, {
             onSuccess: () => {
-                dispatch(clearAuthorized());
+                dispatch(setNotAuthorized());
             },
         });
     };
+    
+    useListenAuthStatus();
 
     return (
         <RrLayout>

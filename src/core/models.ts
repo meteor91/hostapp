@@ -8,3 +8,9 @@ export interface User {
     username: string
     id: string
 }
+
+export enum AuthStatus {
+    LOADING = 'LOADING',
+    AUTHORIZED = 'AUTHORIZED',
+    NOT_AUTHORIZED = 'NOT_AUTHORIZED',
+}

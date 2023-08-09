@@ -1,10 +1,10 @@
 import React from 'react';
 import { CheckAuthorization } from 'modules/Auth/components/CheckAuthorization';
 import { LoginPage } from 'modules/Auth/LoginPage';
-import { LoggedLayout } from 'modules/Auth/components/LoggedLayout';
+import { AuthorizedLayout } from 'modules/Auth/components/AuthorizedLayout';
 import { MFComponent } from 'core/moduleFederation/MFComponent';
 
-const loggedRoutes = [
+const authorizedRoutes = [
     {
         path: '/home',
         element: <div>home</div>,
@@ -32,8 +32,8 @@ export const routes = [
             },
             {
                 path: '/',
-                element: <LoggedLayout />,
-                children: loggedRoutes,
+                element: <AuthorizedLayout />,
+                children: authorizedRoutes,
             },
         ],
     },

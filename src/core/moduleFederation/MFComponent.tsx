@@ -15,12 +15,15 @@ interface Props<ModuleProps = undefined> {
 export const MFComponent = <T,>(props: Props<T>): JSX.Element => {
 // export const MFComponent = <T,>(): React.FC<Props<T>> => (props: Props<T>) => {
     const { url, scope, module, moduleProps = {} } = props;
-    const { Component: FederatedComponent } = useFederatedComponent(url, scope, module);
+    const { Component: FederatedComponent, failed } = useFederatedComponent(url, scope, module);
 
     return (
         <div>
             <Suspense fallback="Loading Module">
                 {FederatedComponent && <FederatedComponent {...moduleProps}/>}
+                {failed && (
+                    <div>something goes wrong</div>
+                )}
             </Suspense>
         </div>
     );

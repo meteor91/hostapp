@@ -1,21 +1,21 @@
 import React from 'react';
-import { Button, Col, Row, Form, Text } from 'keepd';
-import { type LoginForm } from '../models';
-import style from './LoginPage.module.less';
-import { RequiredField } from 'core/ValidationRules';
-import { type User } from 'core/models';
-import { useMutation } from 'react-query';
-import { type ServerValidateErrors } from 'core/models';
-import { loginUser } from './api';
 import { useDispatch } from 'react-redux';
-import { setAuthorized } from 'modules/Auth/slices';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { Button, Col, Row, Form, Text } from 'keepd';
+import { RequiredField } from 'core/ValidationRules';
+import { ServerValidateErrors, type User } from 'core/models';
+import { setAuthorized } from 'modules/Auth/slices';
+import { type LoginForm } from '../models';
+import { loginUser } from './api';
+import style from './LoginPage.module.less';
 
 export const LoginPage: React.FC = () => {
     const mutation = useMutation<User, ServerValidateErrors<LoginForm>, LoginForm>(loginUser);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+
     const handleSubmit = (data: LoginForm): void => {
         mutation.mutate(data, {
             onSuccess: (user: User) => {
@@ -36,7 +36,6 @@ export const LoginPage: React.FC = () => {
                 </Row>
                 <Form<LoginForm>
                     onSubmit={handleSubmit}
-                    // defaultValues={{}}
                 >
                     <Form.Input
                         name="username"

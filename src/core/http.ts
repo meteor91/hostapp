@@ -1,5 +1,5 @@
 import axios, { type AxiosError, type AxiosResponse } from 'axios';
-import { clearAuthorized } from '../modules/Auth/slices';
+import { setNotAuthorized } from '../modules/Auth/slices';
 import { store } from './store';
 
 const http = axios.create({
@@ -14,7 +14,7 @@ http.interceptors.response.use(
     (response: AxiosResponse) => response,
     (error: AxiosError) => {
         if (error.response?.status === 401) {
-            store.dispatch(clearAuthorized());
+            store.dispatch(setNotAuthorized());
         }
         return Promise.reject(error);
     },
