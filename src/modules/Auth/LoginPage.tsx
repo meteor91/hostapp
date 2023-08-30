@@ -54,7 +54,7 @@ export const LoginPage: React.FC = () => {
                         <Form.Item>
                             {
                                 mutation.error.nonFieldErrors.map((errorMessage, index) => (
-                                    <div key={index}>{errorMessage}</div>
+                                    <Text type="error" key={index}>{errorMessage}</Text>
                                 ))
                             }
                         </Form.Item>

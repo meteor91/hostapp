@@ -14,3 +14,7 @@ export enum AuthStatus {
     AUTHORIZED = 'AUTHORIZED',
     NOT_AUTHORIZED = 'NOT_AUTHORIZED',
 }
+
+export interface ModuleProps {
+    basename: string
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PackageIcon, DeviceTabletIcon, NavBar } from 'keepd';
 import { useLocation, Link } from 'react-router-dom';
+import styles from './MainMenu.module.less';
 
 export const MainMenu: React.FC = () => {
     const location = useLocation();
@@ -15,12 +16,12 @@ export const MainMenu: React.FC = () => {
 const items = [
     {
         icon: <DeviceTabletIcon />,
-        label: <Link to='/home'>home</Link>,
+        label: <Link className={styles.link} to='/home'>home</Link>,
         key: '/home',
     },
     {
         icon: <PackageIcon />,
-        label: <Link to='/app2'>app2</Link>,
-        key: '/app2',
+        label: <Link className={styles.link} to='/orders'>orders</Link>,
+        key: '/orders',
     },
 ];

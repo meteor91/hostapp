@@ -1,21 +1,26 @@
 import React from 'react';
+import { MFComponent } from 'core/moduleFederation/MFComponent';
+import { ModuleProps } from 'core/models';
 import { CheckAuthorization } from 'modules/Auth/components/CheckAuthorization';
 import { LoginPage } from 'modules/Auth/LoginPage';
 import { AuthorizedLayout } from 'modules/Auth/components/AuthorizedLayout';
-import { MFComponent } from 'core/moduleFederation/MFComponent';
+import { Home } from 'modules/Home/pages/Home';
 
 const authorizedRoutes = [
     {
         path: '/home',
-        element: <div>home</div>,
+        element: <Home />,
     },
     {
-        path: '/app2',
+        path: '/orders/*',
         element: (
-            <MFComponent
+            <MFComponent<ModuleProps>
                 url="http://localhost:8080/remoteEntry.js"
-                scope="app2"
+                scope="Orders"
                 module='./App'
+                moduleProps={{
+                    basename: '/orders',
+                }}
             />
         ),
     },
