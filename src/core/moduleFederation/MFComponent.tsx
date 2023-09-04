@@ -1,21 +1,21 @@
 import React, { type JSX, Suspense } from 'react';
 import { useFederatedComponent } from './hooks/useFederatedComponent';
+import { ModuleProps } from '../models';
+import { useAppNavigationManager } from './hooks/useAppNavigationManager';
 
-interface Props<ModuleProps = undefined> {
+interface Props<ModuleProps> {
     url: string
     scope: string
     module: string
-    moduleProps?: ModuleProps
+    moduleProps: ModuleProps
 }
 
-// const WithGeneric = <T,>(): React.FC<TestProps<T>> =>
-//   (props: TestProps<T>) => (
-
 // eslint-disable-next-line @typescript-eslint/comma-dangle
-export const MFComponent = <T,>(props: Props<T>): JSX.Element => {
-// export const MFComponent = <T,>(): React.FC<Props<T>> => (props: Props<T>) => {
+export const MFComponent = <T extends ModuleProps,>(props: Props<T>): JSX.Element => {
     const { url, scope, module, moduleProps = {} } = props;
     const { Component: FederatedComponent, failed } = useFederatedComponent(url, scope, module);
+
+    useAppNavigationManager(props.moduleProps.basename);
 
     return (
         <div>
